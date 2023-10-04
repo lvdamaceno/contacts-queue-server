@@ -28,20 +28,19 @@ app.get('/contacts/:id', async (request) => {
 })
 
 // Post
-// app.post('/contacts', async (request) => {
-//   const bodySchema = z.object({
-//     contactNumber: z.string(),
-//     isUsed: z.coerce.boolean().default(false),
-//   })
-//   const { contactNumber } = bodySchema.parse(request.body)
-//   const contact = await prisma.contact.create({
-//     data: {
-//       contactNumber,
-//       userId: '72123e09-9165-4b0f-9a6c-a047300f0c07',
-//     },
-//   })
-//   return contact
-// })
+app.post('/contacts', async (request) => {
+  const bodySchema = z.object({
+    contactNumber: z.string(),
+    isUsed: z.coerce.boolean().default(false),
+  })
+  const { contactNumber } = bodySchema.parse(request.body)
+  const contact = await prisma.contactsNumbers.create({
+    data: {
+      contactNumber,
+    },
+  })
+  return contact
+})
 
 // Update
 app.put('/contacts/:id', async (request) => {
