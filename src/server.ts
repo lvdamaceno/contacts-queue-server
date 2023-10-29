@@ -11,7 +11,7 @@ app.get('/contacts', async () => {
       isUsed: false,
     },
   })
-  return contacts
+  return contacts?.id
 })
 
 app.get('/contacts/:id', async (request) => {
