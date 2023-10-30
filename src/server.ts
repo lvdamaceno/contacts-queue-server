@@ -23,6 +23,14 @@ app.get('/contacts', async () => {
   return contacts
 })
 
+// Count available
+app.get('/contacts/available', async () => {
+  const available = await prisma.$queryRaw`
+  SELECT COUNT(id) FROM "contactsNumbers" WHERE "isUsed"=False
+  `
+  return available
+})
+
 app.get('/contacts/:id', async (request) => {
   const paramsSchema = z.object({
     id: z.string().uuid(),
