@@ -6,7 +6,7 @@ import { number, z } from 'zod'
 const prisma = new PrismaClient()
 const app = fastify()
 // CORS
-await app.register(cors, { 
+app.register(cors, { 
   // put your options here
 })
 
