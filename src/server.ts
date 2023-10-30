@@ -4,6 +4,14 @@ import { number, z } from 'zod'
 
 const prisma = new PrismaClient()
 const app = fastify()
+// Config
+const corsConf = {
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}
+app.use(cors(corsConf));
 // Get
 app.get('/contacts', async () => {
   const contacts = await prisma.contactsNumbers.findFirst({
