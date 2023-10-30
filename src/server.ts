@@ -12,12 +12,15 @@ app.register(cors, {
 
 // Get
 app.get('/contacts', async () => {
-  const contacts = await prisma.contactsNumbers.findFirst({
-    where: {
-      isUsed: false,
-    },
-  })
-  return contacts?.id
+  // const contacts = await prisma.contactsNumbers.findFirst({
+  //   where: {
+  //     isUsed: false,
+  //   },
+  // })
+  const contacts = await prisma.$queryRaw`
+  SELECT id FROM "contactsNumbers" ORDER BY random() limit 1
+  `
+  return contacts
 })
 
 app.get('/contacts/:id', async (request) => {
