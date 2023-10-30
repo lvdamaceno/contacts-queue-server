@@ -1,9 +1,14 @@
 import fastify, { FastifyInstance } from 'fastify'
+import cors from '@fastify/cors'
 import { PrismaClient } from '@prisma/client'
 import { number, z } from 'zod'
 
 const prisma = new PrismaClient()
 const app = fastify()
+// CORS
+await app.register(cors, { 
+  // put your options here
+})
 
 // Get
 app.get('/contacts', async () => {
