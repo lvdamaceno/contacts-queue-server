@@ -10,11 +10,6 @@ app.register(cors, {
   // put your options here
 })
 
-// Get Remaining Contacts
-app.get('/remaining', async () => {
-  const remainingContacts = await prisma.contactsNumbers.count()
-  return remainingContacts
-})
 // Get
 app.get('/contacts', async () => {
   // const contacts = await prisma.contactsNumbers.findFirst({
@@ -40,6 +35,12 @@ app.get('/contacts/:id', async (request) => {
     },
   })
   return contact.contactNumber
+})
+
+// Get Count All
+app.get('/countall', async () => {
+  const countAll = await prisma.contactsNumbers.count()
+  return countAll
 })
 
 // Post
