@@ -12,11 +12,7 @@ app.register(cors, {
 
 // Get Remaining Contacts
 app.get('/remaining', async () => {
-  const remainingContacts = await prisma.contactsNumbers.aggregate({
-    _count: {
-      isUsed: true,
-    },
-  })
+  const remainingContacts = await prisma.contactsNumbers.count()
   return remainingContacts
 })
 // Get
