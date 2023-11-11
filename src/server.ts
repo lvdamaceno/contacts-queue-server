@@ -15,7 +15,7 @@ app.get('/remaining', async () => {
   const remainingContacts = await prisma.$queryRaw`
   SELECT COUNT(id) FROM "contactsNumbers" WHERE "isUsed"=False
   `
-  return remainingContacts
+  return JSON.stringify(remainingContacts)
 })
 
 // Get
