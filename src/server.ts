@@ -53,6 +53,16 @@ app.get('/countused', async () => {
   return countUsed
 })
 
+// Get Count Remaining
+app.get('/remaining', async () => {
+  const countRemaining = await prisma.contactsNumbers.count({
+    where: {
+      isUsed: false,
+    },
+  })
+  return countRemaining
+})
+
 // Post
 app.post('/contacts', async (request) => {
   const bodySchema = z.object({
