@@ -10,6 +10,19 @@ app.register(cors, {
   // put your options here
 })
 
+// Get Remaining Contacts
+app.get('/remaining', async () => {
+  // const contacts = await prisma.contactsNumbers.findFirst({
+  //   where: {
+  //     isUsed: false,
+  //   },
+  // })
+  const contacts = await prisma.$queryRaw`
+  SELECT COUNT(id) FROM "contactsNumbers" WHERE "isUsed"=False
+  `
+  return contacts
+})
+
 // Get
 app.get('/contacts', async () => {
   // const contacts = await prisma.contactsNumbers.findFirst({
